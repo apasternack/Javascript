@@ -1,0 +1,59 @@
+var person = {
+    firstname: 'John',
+    lastname: 'Doe',
+    getFullName: function () {
+
+        var fullname = this.firstname + ' ' + this.lastname;
+        return fullname;
+
+    }
+}
+
+var logName = function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullName());
+    console.log('Arguments: ' + lang1 + ' ' + lang2);
+    console.log('---------');
+
+}
+
+var logPersonName = logName.bind(person);  //.bind creates a copy of the function it acts on with the "this" property pointing to whatever object you pass in the parameter, in this case "person"
+
+// logName('en');
+
+logPersonName('en');
+
+logName.call(person, 'en', 'es');// .call works the same as () BUT lets you control what 'this means', passing it as the first parameter before function parameters
+logName.apply(person, ['be', 'zn']);  //same as call BUT with an array for function parameters, which can be more usefull in mathematical situations or for large data sets
+
+
+(function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullName());
+    console.log('Arguments: ' + lang1 + ' ' + lang2);
+    console.log('---------');
+
+}).apply(person, ['be', 'zn']);
+
+
+//function borrowing with call/apply
+
+var person2 = {
+    firstname: 'Suzi',
+    lastname: 'Q'
+}
+
+console.log(person.getFullName.apply(person2));
+
+//function currying
+function multiply(a,b) {
+    console.log("function arguments: ");
+    console.log(arguments);
+    return a * b;
+}
+
+var multiplyByTwo = multiply.bind(this, 2);
+console.log(multiplyByTwo(5));
+
+var multiplyByTwo = multiply.bind(this, 3);
+console.log(multiplyByTwo(5));

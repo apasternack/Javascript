@@ -1,49 +1,40 @@
-
-function mapForEach(arr, fn) {
-
-    var newArr = [];
-    for (var i = 0; i < arr1.length; i++) {
-        newArr.push(
-            fn(arr[i])
-        )
-    };
-    return newArr;
+var person = {
+    firstname: 'Default',
+    lastname: 'Default',
+    getFullName: function () {
+        return this.firstname + ' ' + this.lastname;
+    }
 }
 
-
-var arr1 = [1, 2, 3];
-console.log;
-
-var arr2 = mapForEach(arr1, function (item) {
-    return item * 2;
-});
-
-var arr3 = mapForEach(arr1, function (item) {
-    return item > 2;
-});
-
-console.log(arr2);
-console.log(arr3);
-
-var checkPastLimit = function (limiter, item) {
-    return item > limiter;
+var john = {
+    firstname: 'John',
+    lastname: 'Doe'
 }
-var arr4 = mapForEach(arr1, checkPastLimit.bind(this, 1));
 
-console.log(arr4);
+//dont do this ever!!! for demo purposes only
 
-var checkPastLimitedSimplified = function (limiter) {
-    return function (limiter, item) {
-        return item > limiter;
-    }.bind(this, limiter);
-};
+john.__proto__ = person;
 
-var arr5 = mapForEach(arr1, checkPastLimitedSimplified(2));
-console.log(arr5);
+for (var prop in john) {
+    if (john.hasOwnProperty(prop)) {
+        console.log(prop + ': ' + john[prop]);
 
-
-if(typeof _ === 'function') {
-  if(typeof _.reduce !== 'undefined') {
-    console.log('under_score_not_loaded');
-  }
+    }
 }
+
+var jane = {
+    address: '111 Main St.',
+    getFormalFullName: function() {
+        return this.lastname + ', ' + this.firstname;
+    }
+}
+
+var jim = {
+    getFirstName: function() {
+        return firstname;
+    }
+}
+
+_.extend(john, jane, jim);  //uses UnderscoreJS library to place jane and jim methods onto john object
+
+console.log(john);

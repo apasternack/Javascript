@@ -41,9 +41,16 @@ var checkPastLimitedSimplified = function (limiter) {
 var arr5 = mapForEach(arr1, checkPastLimitedSimplified(2));
 console.log(arr5);
 
+var arr6 = _.map(arr1, function(item) {return item * 3;});
+console.log(arr6);
 
+//tests to see if a particular function of Underscore library is loaded 
 if(typeof _ === 'function') {
-  if(typeof _.reduce !== 'undefined') {
-    console.log('under_score_not_loaded');
+  if(typeof _.filter !== 'undefined') {
+    console.log('under_score_function_loaded');
   }
 }
+
+var arr7 = _.filter([2,3,4,5,6,7], function(item) {return item % 2 === 0;});
+console.log(arr7);
+

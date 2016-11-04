@@ -1,0 +1,42 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+	<p></p>
+	<!--<script src="lib1.js"></script>
+        <script src="lib2.js"></script>
+        <script src="appWithIIFEModulizeGreet.js"></script>-->
+	<!--<script src="app.js"></script>-->
+	<!--<script src="app.js"></script>-->
+
+	<select id="ddlTheme" onchange="setColorCookie()">
+        <option value="">Select Color</option>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+    </select>
+	<script type="text/javascript">
+        window.onload = function() {
+            if (document.cookie.length != 0) {
+                var nameValueArray = document.cookie.split("=");
+                document.bgColor = nameValueArray[1];
+                document.getElementById("ddlTheme").value = nameValueArray[1];
+            }
+        }
+        function setColorCookie()
+        {
+            var selectedColor = document.getElementById("ddlTheme").value;
+            if (selectedColor != "Selected Color")
+            {
+                document.bgColor = selectedColor;
+                document.cookie = "color=" + selectedColor;// + ";expires=Fri, 5 Aug 2017 01:00:00 UTC;";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

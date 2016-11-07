@@ -1,0 +1,37 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+	<div id="msg"></div>
+
+	<script type="text/javascript">
+        function cookiesEnabled()
+        {
+            var areCookiesEnabled = (navigator.cookieEnabled) ? true: false; 
+
+            if (typeof navigator.cookieEnabled == "undefined" && !areCookiesEnabled){
+
+             document.cookie = "mytestcookie";
+             areCookiesEnabled = (document.cookie.indexOf("mytestcookie") != -1) ? true : false;
+
+            }
+            return areCookiesEnabled;
+
+        }
+
+        if (cookiesEnabled()) {
+            document.getElementById("msg").innerHTML = "Cookies are enabled";
+        }
+        else {
+            document.getElementById("msg").innerHTML = "Cookies are disabled";
+
+        }
+    </script>
+
+</body>
+
+</html>
